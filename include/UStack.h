@@ -42,19 +42,19 @@ public:
 	}
 };
 template<typename ValType>
-TStack<ValType>& TStack<ValType>::operator=(const TStack& _v)
+TStack<ValType>& TStack<ValType>::operator=(const TStack& _st)
 {
-	if (this != &_v)
+	if (this != &_st)
 	{
-		Count = _v.Count;
-		if (Size != _v.Size)
+		Count = _st.Count;
+		if (Size != _st.Size)
 		{
 			delete[] pVector;
-			Size = _v.Size;
+			Size = _st.Size;
 			pVector = new ValType[Size];
 		}
 		for (int i = 0; i < Size; i++)
-			pVector[i] = _v.pVector[i];
+			pVector[i] = _st.pVector[i];
 	}
 	return *this;
 }
