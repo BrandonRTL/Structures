@@ -34,7 +34,7 @@ public:
 		{
 			throw "Cant top empty stack";
 		}
-		return pVector[Count];
+		return pVector[Count-1];
 	}
 	~TStack()
 	{
@@ -42,19 +42,19 @@ public:
 	}
 };
 template<typename ValType>
-TStack<ValType>& TStack<ValType>::operator=(const TStack& _v)
+TStack<ValType>& TStack<ValType>::operator=(const TStack& _st)
 {
-	if (this != &_v)
+	if (this != &_st)
 	{
-		Count = _v.Count;
-		if (Size != _v.Size)
+		Count = _st.Count;
+		if (Size != _st.Size)
 		{
 			delete[] pVector;
-			Size = _v.Size;
+			Size = _st.Size;
 			pVector = new ValType[Size];
 		}
 		for (int i = 0; i < Size; i++)
-			pVector[i] = _v.pVector[i];
+			pVector[i] = _st.pVector[i];
 	}
 	return *this;
 }
@@ -88,7 +88,7 @@ ValType TStack<ValType>::Pop()
 		throw "Cant pop empty stack";
 	}
 	Count--;
-	return pVector[Count + 1];
+	return pVector[Count];
 }
 template<typename ValType>
 void TStack<ValType>::Push(const ValType &v)
@@ -99,9 +99,10 @@ void TStack<ValType>::Push(const ValType &v)
 		_pVector = new ValType(4 / 3 * Size);
 		for (int i = 0; i < Size; i++)
 			_pVector[i] = pVector[i];
+		delete[] pVector;
 		pVector = _pVector;
 	}
-	pVector[Count + 1] = v;
+	pVector[Count] = v;
 	Count++;
 }
 
