@@ -34,7 +34,7 @@ public:
 		{
 			throw "Cant top empty stack";
 		}
-		return pVector[Count];
+		return pVector[Count-1];
 	}
 	~TStack()
 	{
@@ -88,7 +88,7 @@ ValType TStack<ValType>::Pop()
 		throw "Cant pop empty stack";
 	}
 	Count--;
-	return pVector[Count + 1];
+	return pVector[Count];
 }
 template<typename ValType>
 void TStack<ValType>::Push(const ValType &v)
@@ -99,9 +99,10 @@ void TStack<ValType>::Push(const ValType &v)
 		_pVector = new ValType(4 / 3 * Size);
 		for (int i = 0; i < Size; i++)
 			_pVector[i] = pVector[i];
+		delete[] pVector;
 		pVector = _pVector;
 	}
-	pVector[Count + 1] = v;
+	pVector[Count] = v;
 	Count++;
 }
 

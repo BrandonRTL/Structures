@@ -21,8 +21,8 @@ TEST(TStack, can_pop_element)
 	TStack<int> A;
 	A.Push(3);
 	A.Push(2);
-	A.Pop();
 
+	EXPECT_EQ(2,A.Pop());
 	EXPECT_EQ(3, A.Top());
 }
 TEST(TStack, returns_Is_Empty_1)
@@ -76,8 +76,15 @@ TEST(TStack, can_clear_stack)
 
 	EXPECT_EQ(1, A.IsEmpty());
 }
+TEST(TStack, can_push_and_top_from_empty_stack)
+{
+	TStack<int> B;
 
+	EXPECT_EQ(1, B.IsEmpty());
+	B.Push(10);
 
+	EXPECT_EQ(10, B.Top());
+}
 
 
 
