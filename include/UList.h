@@ -18,6 +18,7 @@ class List
 {
 	int Size;
 	Node<ValType>* head;
+	Node<ValType>* tail;
 public:
 	List();
 	List(int n);
@@ -43,15 +44,27 @@ template <typename ValType>
 void List<ValType>::push_front(ValType Data)
 {
 	head = new Node<ValType>(Data, head);
+	if (Size == 0)
+		tail = head;
 	Size++;
 }
 template <typename ValType>
 ValType List<ValType>::pop_back()
 {
-	Node* current = this->head;
-	head = head->next;
-	delete current;
-	Size;
+	int Counter = 0;
+	ValType Tmp;
+	Node<ValType> *current = this->head;
+	while (current)
+	{
+		if (Counter == Size - 1)
+		{
+			Tmp = current->Data;
+		}
+		current = current->next;
+		Counter++;
+	}
+	Remove(Size - 1);
+	return Tmp;
 }
 template <typename ValType>
 ValType List<ValType>::Front()
@@ -67,9 +80,9 @@ ValType List<ValType>::Back()
 {
 	if (Size != 0)
 	{
-		return head->Data;
+		return operator [](Size - 1);
 	}
-	else throw "Cant Back from empty list";
+	else throw "Cant back from empty list";
 }
 template <typename ValType>
 void List<ValType>::pop_front()
@@ -103,6 +116,7 @@ List<ValType>::List()
 {
 	Size = 0;
 	head = nullptr;
+	tail = nullptr;
 }
 template <typename ValType>
 List<ValType>::List(int n)
@@ -110,6 +124,7 @@ List<ValType>::List(int n)
 	if (n < 0)
 		throw "Not correct";
 	head = 0;
+	tail = 0;
 	Size = n;
 	for (int i = 0; i < Size; i++) 
 	{
@@ -141,7 +156,6 @@ void List<ValType>::Insert(ValType Data, Node<ValType>* prev)
 	Node<ValType>* a = new Node;
 	a->Data = Data;
 	Node<ValType>* b = prev->next;
-	delete prev->next;
 	prev->next = a;
 	a->next = b;
 	Size++;
@@ -197,5 +211,6 @@ List<ValType>::~List()
 	{
 		pop_front();
 	}
+	tail = 0;
 }
 #endif

@@ -22,6 +22,26 @@ TEST(TList, can_push_back_element)
 
 	EXPECT_NO_THROW(A.push_back(3));
 }
+TEST(TList, can_remove_element)
+{
+	List<int> A;
+	A.push_back(2);
+	A.push_back(3);
+	A.push_back(4);
+	A.Remove(0);
+
+	EXPECT_EQ(4, A[1]);
+}
+TEST(TList, can_insert_element)
+{
+	List<int> A;
+	A.push_back(2);
+	A.push_back(3);
+	A.push_back(4);
+	A.Insert(5, 2);
+
+	EXPECT_EQ(5, A[2]);
+}
 TEST(TList, can_push_front_element)
 {
 	List<int> A;
@@ -36,6 +56,15 @@ TEST(TList, can_pop_front_element)
 	A.push_back(3);
 	A.pop_front();
 
+	EXPECT_EQ(1, A.GetSize());
+}
+TEST(TList, can_pop_back_element)
+{
+	List<int> A;
+	A.push_back(2);
+	A.push_back(3);
+
+	EXPECT_EQ(3, A.pop_back());
 	EXPECT_EQ(1, A.GetSize());
 }
 TEST(TList, can_get_size)
@@ -77,9 +106,20 @@ TEST(TList, cant_get_element_with_too_big_index)
 TEST(TList, can_get_front_element)
 {
 	List<int> A;
+	A.push_back(2);
 	A.push_back(1);
 
-	EXPECT_EQ(1, A.Front());
+	EXPECT_EQ(2, A.Front());
+}
+TEST(TList, can_get_back_element)
+{
+	List<int> A;
+	A.push_back(1);
+	A.push_back(2);
+	A.push_back(3);
+	A.push_back(4);
+
+	EXPECT_EQ(4, A.Back());
 }
 TEST(TList, cant_get_front_element_from_empty_list)
 {
