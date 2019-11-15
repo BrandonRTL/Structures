@@ -1,6 +1,7 @@
 #ifndef __TLISTK_H__
 #define __TLISTK_H__
 #include <iostream>
+
 template <typename ValType>
 class Node
 {
@@ -11,6 +12,28 @@ public:
 	{
 		this->Data = _Data;
 		this->next = _next;
+	}
+};
+template <typename ValType>
+class MIFL
+{
+private:
+	Node<ValType>* ptr;
+public:
+	MIFL();
+	MIFL(const MIFL& A);
+	MIFL(Node<ValType>* A);
+	MIFL operator++();
+	MIFL operator++(int);
+	MIFL& operator= (const MIFL& A);
+	ValType& operator*();
+	bool operator== (const MIFL& A)
+	{
+		return (ptr == A.ptr);
+	}
+	bool operator!= (const MIFL& A)
+	{
+		return (ptr != A.ptr);
 	}
 };
 template <typename ValType>
@@ -34,12 +57,30 @@ public:
 	ValType Back();
 	ValType& operator [](int n);
 	~List();
+	Node<ValType>* GetHead()
+	{
+		return head;
+	}
 	int GetSize()
 	{
 		return Size;
 	}
-
+	MIFL<ValType> begin()
+	{
+		MIFL<ValType> A(head);
+		return A;
+	}
+	MIFL<ValType> end()
+	{
+		Node<ValType>* tmp = head;
+		while (tmp->next)
+			tmp = tmp->next;
+		tmp = tmp->next;
+		MIFL<ValType> A(tmp);
+		return A;
+	}
 };
+
 template <typename ValType>
 void List<ValType>::push_front(ValType Data)
 {
@@ -213,4 +254,49 @@ List<ValType>::~List()
 	}
 	tail = 0;
 }
+template<typename ValType>
+MIFL<ValType>::MIFL()
+{
+	ptr = 0;
+}
+
+template<typename ValType>
+MIFL<ValType>::MIFL(const MIFL & A)
+{
+	ptr = A.ptr;
+}
+template<typename ValType>
+ MIFL<ValType>::MIFL(Node<ValType>* A)
+{
+	 ptr = A;
+}
+
+ template<typename ValType>
+ MIFL<ValType> MIFL<ValType>::operator++()
+ {
+	 ptr = ptr->next;
+	 return *this;
+ }
+
+
+ template<typename ValType>
+ MIFL<ValType> MIFL<ValType>::operator++(int)
+ {
+	 MIFL<ValType> tmp(ptr);
+	 ptr = ptr->next;
+	 return tmp;
+ }
+
+ template<typename ValType>
+ MIFL<ValType>& MIFL<ValType>::operator=(const MIFL & A)
+ {
+	 ptr = A.ptr;
+	 return *this;
+ }
+
+ template<typename ValType>
+ValType & MIFL<ValType>::operator*()
+ {
+	return ptr->Data;
+ }
 #endif
