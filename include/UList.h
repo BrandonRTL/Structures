@@ -23,7 +23,7 @@ public:
 	MIFL();
 	MIFL(const MIFL& A);
 	MIFL(Node<ValType>* A);
-	MIFL operator++();
+	MIFL& operator++();
 	MIFL operator++(int);
 	MIFL& operator= (const MIFL& A);
 	ValType& operator*();
@@ -72,11 +72,7 @@ public:
 	}
 	MIFL<ValType> end()
 	{
-		Node<ValType>* tmp = head;
-		while (tmp->next)
-			tmp = tmp->next;
-		tmp = tmp->next;
-		MIFL<ValType> A(tmp);
+		MIFL<ValType> A;
 		return A;
 	}
 };
@@ -272,7 +268,7 @@ template<typename ValType>
 }
 
  template<typename ValType>
- MIFL<ValType> MIFL<ValType>::operator++()
+ MIFL<ValType>& MIFL<ValType>::operator++()
  {
 	 ptr = ptr->next;
 	 return *this;

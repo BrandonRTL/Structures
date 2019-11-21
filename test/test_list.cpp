@@ -1,5 +1,6 @@
 #include "UList.h"
 #include <gtest.h>
+#include <vector>
 
 TEST(TList, can_create_default_list)
 {
@@ -153,3 +154,50 @@ TEST(TList, can_pop_front)
 		ASSERT_NO_THROW(List<int> list(1000));
 	}
 }*/
+TEST(TMy_List_For_Iterator, can_creatr_MIFL)
+{
+	List<int> A;
+
+	EXPECT_NO_THROW(auto iter = A.begin());
+}
+TEST(TMy_List_For_Iterator, equal_iterators_are_equal)
+{
+	List<int> A;
+	A.push_back(1);
+	A.push_back(2);
+	A.push_back(3);
+	auto iter1 = A.begin();
+	auto iter2 = A.begin();
+
+	EXPECT_EQ(1, iter1 == iter2);
+}
+TEST(TMy_List_For_Iterator, notequal_iterators_are_not_equal)
+{
+	List<int> A;
+	A.push_back(1);
+	A.push_back(2);
+	A.push_back(3);
+	auto iter1 = A.begin();
+	auto iter2 = A.begin();
+	iter2++;
+
+	EXPECT_EQ(1, iter1 != iter2);
+}
+TEST(TMy_List_For_Iterator,can_go_throught_the_list)
+{
+	List<int> A;
+	std::vector<int> B, C1;
+	A.push_back(1);
+	A.push_back(2);
+	A.push_back(3);
+	C1.push_back(1);
+	C1.push_back(2);
+	C1.push_back(3);
+	for (auto iter = A.begin(); iter != A.end(); iter++)
+	{
+		std::cout << *iter << std::endl;
+		B.push_back(*iter);
+	}
+
+	EXPECT_EQ(B, C1);
+}

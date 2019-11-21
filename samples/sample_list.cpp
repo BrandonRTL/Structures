@@ -14,8 +14,11 @@ void main()
 	b = a.GetHead();
 	d = b;
 	c = b;
+	auto iter = a.begin();
 	++c;
 	d++;
+	std::cout << std::endl << std::endl << std::endl << std::endl;
+	std::cout << std::endl << std::endl << std::endl << std::endl;
 	for (int i = 0; i < a.GetSize(); i++)
 		std::cout << a[i] << std::endl;
 	std::cout << std::endl << std::endl << std::endl << std::endl;
@@ -25,4 +28,5 @@ void main()
 	std::cout << *d << std::endl;
 	std::cout << *d1 << std::endl;
 	std::cout << (c ==d) << std::endl;
+	std::cout << std::endl << std::endl << std::endl << std::endl;
 }
