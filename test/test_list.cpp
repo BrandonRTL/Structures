@@ -140,7 +140,8 @@ TEST(TList, can_pop_front)
 	EXPECT_EQ(2, A.Front());
 	EXPECT_EQ(2, A[0]);
 }
-/*TEST(TList, Memory)
+/*
+TEST(TList, Memory)
 {
 	List<int> A;
 	for (int i = 0; i < 100000; i++)
@@ -153,7 +154,8 @@ TEST(TList, can_pop_front)
 		std::cout << i << " ";
 		ASSERT_NO_THROW(List<int> list(1000));
 	}
-}*/
+}
+*/
 TEST(TMy_List_For_Iterator, can_creatr_MIFL)
 {
 	List<int> A;
