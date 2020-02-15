@@ -39,13 +39,6 @@ TEST(TQueue, returns_Is_Empty_2)
 
 	EXPECT_EQ(1, A.IsEmpty());
 }
-TEST(TQueue, returns_Is_Full_1)
-{
-	Queue<int> A(2);
-	A.push(13);
-	A.push(13);
-	EXPECT_EQ(1, A.IsFull());
-}
 TEST(TQueue, cant_pop_from_empty_queue)
 {
 	Queue<int> A;

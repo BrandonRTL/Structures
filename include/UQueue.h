@@ -29,13 +29,6 @@ public:
 			flag = 1;
 		return flag;
 	}
-	bool IsFull()
-	{
-		bool flag = 0;
-		if ((!IsEmpty())&&(Xd == Tl))
-			flag = 1;
-		return flag;
-	}
 	VT& top()
 	{
 		if (IsEmpty())
