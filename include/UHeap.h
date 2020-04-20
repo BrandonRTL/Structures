@@ -35,41 +35,49 @@ public:
 	}
 	int approachMyChild(int id, int childInd)
 	{
-		if (childInd >= demension || childInd < 0)
-			throw "WTF!?!?!";
 		return (demension*id + childInd);
 	}
 	int parent(int id)
 	{
+		if (id <= 0 || id > data.size())
+			throw "123";
 		return ((id - 1) / demension);
 	}
 	int minChild(int id)
 	{
-		int min = approachMyChild(id; 0);
-		for (int i = 0; i < demension; i++)
+		int start, finish, min;
+		start = approachMyChild(id, 1);
+		min = approachMyChild(id, 1);
+		if (start >= data.size())
+			return -1;
+		finish = (id + 1)*demension;
+		if (finish >= (data.size() - 1))
+			finish = data.size() - 1;
+		for (int i = start; i <= finish; i++)
 		{
-			if (data[approachMyChild(id), i] < data[min])
+			if (data[i] < data[min])
 			{
 				min = i;
 			}
 		}
 		return min;
+		
 	}
 	void swap(int id1, int id2)
 	{
-		priority_elem<ValType> tmp = data[j1];
-		data[j1] = data[j2];
-		data[j2] = tmp;
+		priority_elem<ValType> tmp = data[id1];
+		data[id1] = data[id2];
+		data[id2] = tmp;
 	}
 	void diving(int id)
 	{
 		int j1, j2;
 		j1 = id;
 		j2 = minChild(id);
+	//	std::cout << "321" << std::endl;
 		while (j2 != -1 && data[j1] > data[j2])
 		{
-			data.swap(j1, j2);
-			//swap(j1, j2);
+			swap(j1, j2);
 			j1 = j2;
 			j2 = minChild(j1);
 		}
@@ -109,8 +117,11 @@ public:
 	}
 	void makeHeap()
 	{
-		for (int i = data.size() - 1; i >= 1; i++)
+		for (int i = data.size() - 1; i >= 0; i--)
+		{
 			diving(i);
+
+		}
 	}
 };
 #endif
