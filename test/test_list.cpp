@@ -1,7 +1,7 @@
 #include "UList.h"
 #include <gtest.h>
 #include <vector>
-
+/*
 TEST(TList, can_create_default_list)
 {
 
@@ -155,7 +155,7 @@ TEST(TList, Memory)
 		ASSERT_NO_THROW(List<int> list(1000));
 	}
 }
-*/
+*//*
 TEST(TMy_List_For_Iterator, can_creatr_MIFL)
 {
 	List<int> A;
@@ -203,3 +203,4 @@ TEST(TMy_List_For_Iterator,can_go_throught_the_list)
 
 	EXPECT_EQ(B, C1);
 }
+*/

@@ -1,6 +1,6 @@
 #include "Uqueue.h"
 #include <gtest.h>
-
+/*
 TEST(TQueue, can_create_queue)
 {
 	EXPECT_NO_THROW(Queue<int>(3));
@@ -51,3 +51,4 @@ TEST(TQueue, cant_top_from_empty_stack)
 
 	EXPECT_ANY_THROW(A.top());
 }
+*/
