@@ -47,6 +47,7 @@ class avltree
 	}
 	node* rotate_right(node* t) // Why have single and double rotation when you can have only single? 
 	{
+
 		node* q = t->left;
 		t->left = t->right;
 		t->right = t;
@@ -86,8 +87,46 @@ class avltree
 		if (key<t->key)
 			t->left = insert(t->left, key);
 		else
-			t->right = insert(t->right, key;
+			t->right = insert(t->right, key);
 		return balance(t);
 	}
+	node* find_min(node* t)
+	{
+		if (t == 0)
+			return 0;
+		else if (t->left == 0)
+			return t;
+		else
+			return find_min(t->left);
+	}
+	node* remove_min(node* t) 
+	{
+		if (t->left == 0)
+			return t->right;
+		t->left = remove_min(t->left);
+		return balance(t);
+	}
+	node* remove(node* t, int key)
+	{
+		if (!t)
+			return 0;
+		if (key < t->key)
+			t->left = remove(t->left, key);
+		else if (key > t->key)
+			t->right = remove(t->right, key);
+		else 
+		{
+			node* temp_left = t->left;
+			node* temp_right = t->right;
+			delete t;
+			if (!temp_right) return temp_left;
+			node* min = find_min(temp_right);
+			min->right = remove_min(temp_right);
+			min->left = temp_left;
+			return balance(min);
+		}
+		return balance(t);
+	}
+
 };
 #endif
